@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractLess = new ExtractTextPlugin({
-    filename: "[name].[chunkhash:8].css",
+    filename: "assets/css/[name][chunkhash:8].css",
     disable: process.env.NODE_ENV === "development"
 });
 /*
@@ -18,7 +18,7 @@ var JsFiles = glob.sync('./src/**/index.js'),
     config = {
     entry: newEntries,
     output: {
-        filename: '[name].[chunkhash:8].js',
+        filename: 'assets/js/[name][chunkhash:8].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: ""///public/static/
     },
@@ -37,10 +37,10 @@ var JsFiles = glob.sync('./src/**/index.js'),
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'wdjf-file-loader',
                         options: {
-                            regExp: /\\src(.*)$/,
-                            name: '[1]',
+                            name: '[path][name].[ext]',
+                            outputPath:'assets/images/'
                         }
                     }
                 ]//   d:work\learn-webpacl\src\index\index.png  /src/promotion/active20180531/index.png
@@ -61,7 +61,7 @@ JsFiles.forEach(function(f){
     newEntries[name] = f;
 
     var plug =  new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, './dist/'+ name +'.html'),
+        filename: path.resolve(__dirname, './dist/pages/[hash:8].html'),
         chunks:[name],//需要引入的chunk，不配置就会引入所有页面的资源
         template: path.resolve(__dirname, './src/'+ name +'.html'),
         inject: true       //不会自动写入编译的css和js
@@ -69,7 +69,6 @@ JsFiles.forEach(function(f){
 
     config.plugins.push(plug);
 });
-
 
 config.entry = Object.assign({}, config.entry, newEntries);//将config.entry,newEntries copy到congif.enyrt
 
