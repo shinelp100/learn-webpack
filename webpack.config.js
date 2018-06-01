@@ -6,14 +6,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractLess = new ExtractTextPlugin({
-    filename: "assets/css/[name][chunkhash:8].css",
+    filename: "assets/css/[name][hash:8].css",
     disable: process.env.NODE_ENV === "development"
 });
 /*
 * 获取文件路径
 *
 * */
-var JsFiles = glob.sync('./src/**/index.js'),
+var JsFiles = glob.sync('./src/**/**.js'),
     newEntries = {},
     config = {
     entry: newEntries,
@@ -57,11 +57,11 @@ var JsFiles = glob.sync('./src/**/index.js'),
     ]
 };
 JsFiles.forEach(function(f){
-    var name = /.*?\/(.*?\/index)\.js/.exec(f)[1].replace('src/','').replace("/js","");//得到apps/question/index这样的文件名
+    var name = /.*?\/(.*?)\.js/.exec(f)[1].replace('src/','').replace("/js","");//得到apps/question/index这样的文件名
     newEntries[name] = f;
 
     var plug =  new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, './dist/pages/[hash:8].html'),
+        filename: path.resolve(__dirname, './dist/pages/'+[name]+'[hash:8].html'),
         chunks:[name],//需要引入的chunk，不配置就会引入所有页面的资源
         template: path.resolve(__dirname, './src/'+ name +'.html'),
         inject: true       //不会自动写入编译的css和js

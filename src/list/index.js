@@ -4,12 +4,10 @@
 import './index.less';
 import './index.html';
 
-const Another = require("./another");
-const util = require("./../utils/util");
+const util = require("../../utils/util");
 
 function getUserName() {
     console.log("shinelp100");
 }
 getUserName();
 util.getUserAge();
-Another();

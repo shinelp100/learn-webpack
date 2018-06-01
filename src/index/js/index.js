@@ -5,8 +5,7 @@ import '../css/index.less';
 import  '../images/index.png';
 
 const FastClick = require("../../../libs/fastclick");
-const Another = require("./another");
-const util = require("./../../utils/util");
+const util = require("../../../utils/util");
 
 function getUserName() {
     FastClick.attach(document.body);
@@ -14,4 +13,3 @@ function getUserName() {
 }
 getUserName();
 util.getUserAge();
-Another();
