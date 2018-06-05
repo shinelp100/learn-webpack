@@ -13,3 +13,6 @@ function getUserName() {
 }
 getUserName();
 util.getUserAge();
+
+var a = 123;
+console.log(a);
