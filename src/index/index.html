@@ -6,7 +6,14 @@
 </head>
 <body>
 <img src="images/index.png" alt="">
-<p>shinelp100</p>
+<p>shinelp100 我添加了监听你知道吗</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="../../libs/fastclick.js"></script>
+<script>
+    window.onload = function(){
+        var url = "/api/deal/deal-list?pageIndex=1&cid=-1";
+        axios.get(url).then((respone)=>{document.getElementsByTagName('body')[0].innerHTML = respone.data}).catch((error)=>{console.log(error)})
+    }
+</script>
 </body>
 </html>
