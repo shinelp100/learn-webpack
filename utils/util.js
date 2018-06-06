@@ -5,5 +5,5 @@ var commonModule = {
     getUserSex: function(){
         console.log("shinelp100 sex is boy");
     }
-};
+}
 module.exports = commonModule;

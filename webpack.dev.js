@@ -16,7 +16,7 @@ var JsFiles = glob.sync('./src/**/**.js'),
         output: {
             filename: 'assets/js/[name].js',
             path: path.resolve(__dirname, 'dist'),
-            publicPath: ""///public/static/
+            publicPath: "/dist"
         },
         module: {
             rules: [
@@ -25,12 +25,7 @@ var JsFiles = glob.sync('./src/**/**.js'),
                     use: extractLess.extract({
                         fallback: 'style-loader',
                         use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    minimize: true
-                                }
-                            },
+                            'css-loader',
                             'less-loader'
                         ]
                     })
@@ -47,7 +42,7 @@ var JsFiles = glob.sync('./src/**/**.js'),
                             loader: 'wdjf-file-loader',
                             options: {
                                 name: '[path][name].[ext]',
-                                outputPath: 'assets/images/'
+                                outputPath: '/assets/images/'
                             }
                         }
                     ]
@@ -76,9 +71,6 @@ JsFiles.forEach(function (f) {
         chunks: [name],//需要引入的chunk，不配置就会引入所有页面的资源
         template: path.resolve(__dirname, './src/' + name + '.html'),
         inject: true,       //不会自动写入编译的css和js
-        minify: {
-            removeAttributeQuotes: true//压缩 去掉引号
-        }
     });
 
     config.plugins.push(plug);

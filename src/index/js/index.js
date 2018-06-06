@@ -2,7 +2,6 @@
 * 添加样式文件的引用
 * */
 import '../css/index.less';
-import  '../images/index.png';
 
 const FastClick = require("../../../libs/fastclick");
 const util = require("../../../utils/util");

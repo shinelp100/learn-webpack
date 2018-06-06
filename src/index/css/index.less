@@ -5,7 +5,20 @@ body {
   background: url("../images/index.png") #f96 no-repeat;
 }
 
+@font-face{
+  /*定义的字体名称*/
+  font-family: newfont;
+  /*字体格式的约束文件  固定模式*/
+  src:
+          url(/font/LiDeBiao-Xing3.woff) format('woff'),
+          url(/font/LiDeBiao-Xing3.ttf) format('truetype'),
+          url(/font/LiDeBiao-Xing3.svg) format('svg'),
+          url(/font/LiDeBiao-Xing3.eot) format('embedded-opentype');
+}
+
 .test {
+  font-family: newfont;
+  font-size: 30px;
   line-height: 1;
   transform: rotate(30deg);
   color: #fff;
